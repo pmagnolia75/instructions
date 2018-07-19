@@ -1,0 +1,133 @@
+# ---------------------------------------------------------------------------------------
+#	Step 0: (from internet browser)
+# Open a browser, and login to github.com
+# search for RPIClass-001
+# Fork Tyler's github project to your own account, in a browser.
+# ---------------------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------------------
+#	Step 1: (from terminal)
+# First commands to type on pi, after above, are to clone your 
+# new fork to the desktop.
+# Open terminal app, and change directory to the desktop:
+cd ~/Desktop
+# ---------------------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------------------
+# 	Step 2: (from terminal)
+# Clone your new fork from github to a new folder on your desktop:
+git clone https://github.com/pmagnolia75/RPIClass-001.git
+# ---------------------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------------------
+#	Step 3: (from terminal)
+# Change directory into your new folder on the desktop:
+cd ~/Desktop/RPIClass-001
+# ---------------------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------------------
+#	Step 4: (from file browser window/folder icon on taskbar)
+# Open file browser window, and navigate to your old RPIClass-001, 
+# and copy any of your old work to the new folder on the destop
+# This should literally be a drag & drop, or right-click copy/paste.
+# Make sure you paste your work into ~/Desktop/RPIClass-001/Drop/Students/Peter_Magnolia
+# ---------------------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------------------
+# 	Step 5: (from terminal)
+# Delete the old copy of RPIClass-001:
+rm -rf ~/RPIClass-001
+# ---------------------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------------------
+#	Step 6: (from terminal)
+# Either finish setting up the games we have been working on, or copy 
+# from the class folder
+# if you copy... the command would be:
+cp ~/Desktop/RPIClass-001/Classes/Class_03/* ~/Desktop/RPIClass-001/Students/Peter_Magnolia
+# ---------------------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------------------
+#	General Instruction:
+# At this point, all the work is "complete"... but, we need to commit 
+# this work to git, then push that up to github's server... and then 
+# make a pull-request from our fork back to Tyler's github project.
+# ---------------------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------------------
+#	Step 7: (from terminal)
+# Commit your changes to git & push those up to github.
+# 
+# check status of git.  There should be a few red lines that result in running this
+# command, b/c files were added/modified that have not been commited to the local git
+# repo.
+git status
+
+# to commit your files locally, you first have to tell git to add the new files to your
+# repo:
+git add -A
+
+# then you can commit them:
+git commit -a -m "some witty message that describes your changes"
+
+## you will likely get a fatal error as a result of that command, as indicated below:
+## *** Please tell me who you are.
+##
+## Run
+##
+##  git config --global user.email "you@example.com"
+##  git config --global user.name "Your Name"
+##
+## to set your account's default identity.
+## Omit --global to set the identity only in this repository.
+##
+## fatal: empty ident name (for <(null)>) not allowed
+##
+
+# To resolve, set your github email & username, by running the 2 commands above like so:
+git config --global user.email "pmagnolia75@gmail.com"
+git config --global user.name "pmagnolia75"
+
+# Then, commit again:
+git commit -a -m "some witty message that describes your changes"
+
+# right now, everything has been done on the master branch.  Lets save that to a new
+# branch:
+git branch peter
+
+#now lets switch to the new branch:
+git checkout peter
+
+# now we just need to push our changes up to github's server:
+git push --set-upstream origin peter
+
+# In our time together, we had issue here, where we forgot the ssh key password, and made
+# a new one, but I think I recall Elise remembered hers, in class the other day.
+#
+# Commands to make a new key involve deleting the old one first, then creating a key,
+# then enter that into github in the ssh key section:
+# don't just run these next commands unless you have to:
+# rm -rf ~/.ssh 		#removes old key
+# ssh-keygen 			#makes new key... dont set password this time.
+# eval 'ssh-agent' 		# necessary command to start the ssh agent.. just run it
+# ssh-add ~/.ssh/id_rsa 	# adding the new key to known hosts
+# cat ~/.ssh/id_rsa.pub		# this just prints the public key on the screen
+# next step isnt a command... need to highlight the key & copy it.
+# then open https://github.com/settings/profile & go to ssh keys, on the left side.
+# delete the old key, add a new one & paste the line from terminal in as a new key & save
+# then push again: git push --set-upstream origin peter
+#
+# So, at this point, we have done everything we need to do, from the pi, except making 
+# Tyler aware that we are done.  
+# ---------------------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------------------
+#	Step 8: (from internet browser)
+# Go back to github.com, and make a pull request from your forked copy, back to Tyler's 
+# project, in github.
+#
+# On github, click on your forked copy of the repo, and then click Pull Requests
+# then click "New Pull request" button.
+# On the next screen, just click "Create Pull request"
+# and click "Create pull request", again.
+# that should be all there is to it... Now, Tyler just has to review/approve your work.
